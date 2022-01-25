@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdvertModule } from './advert/advert.module';
 import { Advert } from './advert/advert.entity';
 import { ConfigModule } from '@nestjs/config';
+import { NotificationModul } from './notification/notification.module';
+import { Notification } from "./notification/notification.entity";
 
 @Module({
   imports: [
@@ -16,10 +18,11 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [Advert],
+      entities: [Advert, Notification],
       synchronize: true,
     }),
     AdvertModule,
+    NotificationModul,
   ],
   controllers: [AppController],
   providers: [AppService],
